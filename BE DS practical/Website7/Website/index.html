@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+<h2>Simple Distributed Application</h2>
+
+<input type="text" id="msg" placeholder="Enter Data">
+
+<br><br>
+
+<button onclick="postData()">POST</button>
+
+<button onclick="getData()">GET</button>
+
+<button onclick="deleteData()">DELETE</button>
+
+<h3 id="result"></h3>
+
+<script>
+
+function postData() {
+
+    let msg = document.getElementById("msg").value;
+
+    fetch(`/post?msg=${msg}`)
+    .then(res => res.text())
+    .then(data => {
+
+        document.getElementById("result").innerHTML = data;
+
+    });
+
+}
+
+function getData() {
+
+    fetch("/get")
+    .then(res => res.text())
+    .then(data => {
+
+        document.getElementById("result").innerHTML = data;
+
+    });
+
+}
+
+function deleteData() {
+
+    fetch("/delete")
+    .then(res => res.text())
+    .then(data => {
+
+        document.getElementById("result").innerHTML = data;
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
